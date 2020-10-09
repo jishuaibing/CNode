@@ -1,0 +1,1075 @@
+.pool_border {
+    width: 450px;
+    margin: 0 auto;
+    /* display: none; */
+}
+
+.poolTop {
+    /* width:256px; */
+    /* height:60px; */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.poolTop image {
+    float: left;
+}
+
+.poolTop img {
+    float: left;
+}
+
+.poolTop p {
+    /* float:right; */
+    font-size: 21px;
+    color: #FFFFFF;
+    display: block;
+    /* width:165px; */
+    margin: 0 auto;
+}
+
+.profit-content {
+    clear: both;
+    margin: 0 auto;
+    width: 450px;
+    /* box-shadow:0px 0px 41px 0px rgba(67,67,67,1); */
+    border-radius: 14px;
+    /* margin-top: -35px; */
+    /* padding-top: 34px; */
+    /* padding-bottom: 29px; */
+    position: relative;
+    z-index: 1;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    /* background-color:black; */
+}
+
+.profit-content .img {
+    position: absolute;
+    top: -3px;
+    left: 50px;
+}
+
+.title_logo3 {
+    width: 175px;
+    margin: 0 auto;
+    display: block;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+    z-index: 99;
+}
+
+.ppl_border .line {
+    width: 89.287%;
+    margin: 0 auto;
+    height: 1px;
+    background-color: #434343;
+    position: relative;
+}
+
+.market_line4 {
+    margin-top: 30px;
+}
+
+.market_line5 {
+    margin-top: 30px;
+}
+
+.get {
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    width: 73px;
+    margin: 0 auto;
+    display: block;
+}
+
+.get p {
+    color: #7D7D7D;
+}
+
+.getCount p {
+    width: 105px;
+    color: #E48C24;
+    font-size: 42px;
+    margin: 0 auto;
+    display: block;
+}
+
+.receive {
+    width: 330px;
+    height: 56px;
+    background: #E48C24;
+    border-radius: 30px;
+    color: #fff;
+    text-align: center;
+    line-height: 55px;
+    font-size: 20px;
+    font-weight: 400;
+    margin: 0 auto;
+    margin-top: 35px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: block;
+}
+
+.count {
+    display: block;
+    clear: both;
+    width: 330px;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.count1 {
+    /* height:100px; */
+    text-align: center;
+}
+
+.count p {
+    color: #7D7D7D;
+    font-size: 14px;
+}
+
+.ycr p {
+    width: 75px;
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    display: block;
+}
+
+/* .ycr{
+    float:left;
+} */
+.yc1 {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.kc {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.kcr p {
+
+    width: 75px;
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    display: block;
+    text-align: center;
+}
+
+/* .kcr{
+    float:right;
+} */
+.kc_fe,
+.yc_fe,
+.kc,
+.yc1 {
+    text-align: center;
+    color: #fff;
+}
+
+.yw_cofi,
+.kw_eth {
+    text-align: center;
+    color: #E48C24;
+    font-size: 42px;
+}
+
+.countMoney {
+    display: block;
+    width: 330px;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 15px;
+    background-color: rgba(255, 255, 255, .09);
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-indent: 20px;
+    border-radius: 8px;
+
+}
+
+.countMoney {
+    caret-color: GhostWhite;
+}
+
+.out {
+    display: block;
+    float: left;
+    width: 129.2px;
+    height: 37px;
+    color: #E48C24;
+}
+
+.in {
+    width: 129.2px;
+    display: block;
+    float: right;
+    height: 37px;
+    color: #E48C24;
+}
+
+.cqu {
+    /* margin-top:38px; */
+    color: #E48C24;
+    height: 44px;
+}
+
+.cqu button {
+    background-color: #232A34;
+    border-radius: 7px;
+    outline: none;
+    border: none;
+}
+
+.foot {
+    color: #7D7D7D;
+    display: block;
+    margin-top: 30px;
+    margin: 0 auto;
+    font-size: 12px;
+    width: 140px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+.footAdress {
+    width: 460px;
+    height: 42px;
+    margin: 0 auto;
+    background-color: black;
+    margin-top: 20px;
+    border-radius: 12px;
+
+}
+
+.footAdress span {
+    color: #7D7D7D;
+    font-size: 12px;
+    margin: 0 auto;
+    line-height: 42px;
+}
+
+.foot1 {
+    width: 332px;
+    margin: 0 auto;
+}
+
+
+
+
+.pool_border {
+    width: 450px;
+    margin: 0 auto;
+    /* display: none; */
+}
+
+.poolTop {
+    /* width:256px;
+        height:60px; */
+    margin: 0 auto;
+    text-align: center;
+}
+
+.poolTop image {
+    float: left;
+}
+
+.poolTop img {
+    float: left;
+}
+
+.poolTop p {
+    /* float:right; */
+    font-size: 21px;
+    color: #FFFFFF;
+    display: block;
+    /* width:165px; */
+    margin: 0 auto;
+}
+
+.profit-content {
+    clear: both;
+    margin: 0 auto;
+    width: 450px;
+    /* box-shadow:0px 0px 41px 0px rgba(67,67,67,1); */
+    border-radius: 14px;
+    /* margin-top: -35px; */
+    /* padding-top: 34px; */
+    /* padding-bottom: 29px; */
+    position: relative;
+    z-index: 1;
+    background-size: 100% 100%;
+    background-position: 0 0;
+    /* background-color:black; */
+}
+
+.profit-content .img {
+    position: absolute;
+    top: -3px;
+    left: 50px;
+    cursor: pointer;
+}
+
+.title_logo3 {
+    width: 175px;
+    margin: 0 auto;
+    display: block;
+}
+
+.content {
+    width: 100%;
+    height: auto;
+    z-index: 99;
+    position: relative;
+}
+
+.ppl_border .line {
+    width: 89.287%;
+    margin: 0 auto;
+    height: 1px;
+    background-color: #434343;
+    position: relative;
+}
+
+.market_line4 {
+    margin-top: 30px;
+}
+
+.market_line5 {
+    margin-top: 30px;
+}
+
+.go_backrg {
+    /* position: absolute;
+    bottom: -85px; */
+    text-align: center;
+    color: #e48c24;
+    right: 0;
+    cursor: pointer;
+    margin-top: 15px;
+}
+
+.get {
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    width: 73px;
+    margin: 0 auto;
+    display: block;
+    color: #fff;
+    position: relative;
+}
+
+.get p {
+    color: #7D7D7D;
+}
+
+.getCount p {
+    width: 105px;
+    color: #E48C24;
+    font-size: 42px;
+    margin: 0 auto;
+    display: block;
+}
+
+.pool_tab {
+    width: 88%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pool_tab2 {
+    width: 88%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+.pool_tab div {
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #7D7D7D;
+    font-size: 16px;
+    border-bottom: 1px solid #7D7D7D;
+    cursor: pointer;
+}
+
+.pool_tab .pool_active {
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #E48C24;
+    font-size: 16px;
+    border-bottom: 1px solid #E48C24;
+}
+
+.pool_tab2 div {
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #7D7D7D;
+    font-size: 16px;
+    border-bottom: 1px solid #7D7D7D;
+    cursor: pointer;
+}
+
+.pool_tab2 .pool_active {
+    width: 45%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    color: #E48C24;
+    font-size: 16px;
+    border-bottom: 1px solid #E48C24;
+}
+
+.receive {
+    width: 89%;
+    height: 45px;
+    background: #E48C24;
+    border-radius: 7px;
+    color: #fff;
+    text-align: center;
+    line-height: 43px;
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 auto;
+    margin-top: 15px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: none;
+    position: relative;
+}
+
+.count {
+    display: block;
+    clear: both;
+    width: 88%;
+    margin: 0 auto;
+    margin-top: 15px;
+}
+
+.count1 {
+    /* height:100px; */
+    text-align: center;
+    /* display: flex;
+        justify-content: space-between; */
+}
+
+.count p {
+    color: #7D7D7D;
+    font-size: 14px;
+}
+
+.ycr p {
+    width: auto;
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    display: block;
+}
+
+/* .ycr{
+        float:left;
+    } */
+.yc1 {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.kc {
+    font-size: 24px;
+    color: #FFFFFF;
+}
+
+.kcr p {
+
+    width: auto;
+    font-size: 13px;
+    font-style: MicrosoftYaHei;
+    display: block;
+    text-align: center;
+    white-space: nowrap;
+}
+
+/* .kcr{
+        float:right;
+    } */
+.kc_fe,
+.yc_fe,
+.kc,
+.yc1 {
+    text-align: center;
+    color: #fff;
+}
+
+.yw_cofi,
+.kw_eth {
+    text-align: center;
+    color: #E48C24;
+    font-size: 16px;
+}
+
+.countMoney {
+    display: block;
+    width: 100%;
+    height: 50px;
+    margin: 0 auto;
+    line-height: 15px;
+    background-color: rgba(255, 255, 255, .09);
+    border: none;
+    outline: none;
+    font-size: 14px;
+    text-indent: 10px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.countMoney {
+    caret-color: GhostWhite;
+}
+
+.out {
+    display: block;
+    float: left;
+    width: 45%;
+    height: 45px;
+    color: #E48C24;
+}
+
+.in {
+    width: 45%;
+    display: block;
+    float: right;
+    height: 45px;
+    color: #E48C24;
+}
+
+.cqu {
+    /* margin-top:38px; */
+    color: #E48C24;
+    height: 44px;
+}
+
+.cqu button {
+    background-color: #E48C24;
+    border-radius: 7px;
+    color: #fff;
+    outline: none;
+    border: none;
+    position: relative;
+}
+
+.foot {
+    color: #7D7D7D;
+    display: block;
+    margin-top: 30px;
+    margin: 0 auto;
+    font-size: 12px;
+    width: 140px;
+    letter-spacing: 1px;
+    margin-top: 30px;
+}
+
+.footAdress {
+    width: 460px;
+    height: 42px;
+    margin: 0 auto;
+    background-color: black;
+    margin-top: 20px;
+    border-radius: 12px;
+
+}
+
+.footAdress span {
+    color: #7D7D7D;
+    font-size: 12px;
+    margin: 0 auto;
+    line-height: 42px;
+}
+
+.foot1 {
+    width: 332px;
+    margin: 0 auto;
+}
+
+.pool_count2 {
+    display: none;
+}
+
+.contentBig {
+    width: 100%;
+    /* height:; */
+    margin: 0 auto;
+    /* background-color:#040F1F; */
+}
+
+.content-text {
+    /* position:absolute; */
+    /* margin-left: 67px; */
+    /* margin-top: 20px; */
+    width: 92%;
+    background: url(../images/pool1_bg.png) no-repeat;
+    background-size: 100% 100%;
+    margin: 0 auto;
+    /* left: 7%;
+            top: 90px; */
+    /* margin: 0 auto; */
+}
+
+.mark_box .center {
+    width: 88%;
+    margin: 0 auto;
+    padding: 15px 0 25px 0;
+}
+
+.content_text_fir {
+    width: 450px;
+    margin: 0 auto;
+    z-index: 9;
+    background: #1B2330;
+    margin-top: 100px;
+    border-radius: 14px;
+    background: url(../images/exchanged-bg.png) no-repeat;
+    background-size: 100% 100%;
+}
+
+.content_text_sy {
+    width: 450px;
+    margin: 0 auto;
+    z-index: 9;
+    background: #1B2330;
+    margin-top: 100px;
+    border-radius: 14px;
+    background: url(../images/sy_bg.png) no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
+
+.content_text_sy .center {
+    width: 80%;
+    margin: 0 auto;
+
+}
+
+.content_text_wk {
+    width: 450px;
+    margin: 0 auto;
+    z-index: 9;
+    background: #1B2330;
+    margin-top: 100px;
+    border-radius: 14px;
+    background: url(../images/CoFi_bg.png) no-repeat;
+    background-size: 100% 100%;
+    display: none;
+}
+
+.content_text_wk .center {
+    width: 88%;
+    margin: 0 auto;
+
+}
+
+.content_sy {
+    display: none;
+    background: rgb(27, 35, 48);
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 25px;
+    padding: 15px 0;
+    border-radius: 12px;
+}
+
+.content_wk {
+    background: rgb(27, 35, 48);
+    width: 450px;
+    margin: 0 auto;
+    margin-top: 25px;
+    padding: 15px 0;
+    border-radius: 12px;
+}
+
+.content_text_fir .center {
+    width: 88%;
+    margin: 0 auto;
+}
+
+.get-cofi image {
+    width: 100%;
+}
+
+.content-text image {
+    width: 100%;
+    /* margin-left:32px; */
+}
+
+.marketcontent {
+    /* display: none; */
+}
+
+.center .text1 {
+    width: 100%;
+    height: 27px;
+    font-size: 14px;
+    font-family: Microsoft YaHei UI;
+    font-weight: bold;
+    color: #FFFFFF;
+    line-height: 32px;
+}
+
+.center .text2 {
+    line-height: 14px;
+    width: 100%;
+    font-size: 14px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    color: #B3B3B3;
+
+}
+
+.center .text3 {
+    display: block;
+    /* width: 230px; */
+    height: 24px;
+    font-size: 14px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    color: #E48C24;
+    cursor: pointer;
+}
+
+/* .market-content{
+            background-color: #041020;
+        } */
+.button-growp button {
+    width: 92%;
+    height: 40px;
+    font-size: 18px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    color: #FFFFFF;
+    background-color: #E48C24;
+    border-radius: 8px;
+    outline: none;
+    border: none;
+    margin: 0 auto;
+}
+
+.button-growp {
+    margin-top: 20px;
+    display: flex;
+}
+
+.buttom-img {
+    width: 130px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 60px;
+}
+
+.text5 {
+    text-align: center;
+    color: #7D7D7D;
+    margin-top: 40px;
+}
+
+.receive_cofi {
+    /* width: 65px;*/
+    height: 45px;
+    background: #E48C24;
+    border-radius: 9px;
+    color: #fff;
+    text-align: center;
+    line-height: 43px;
+    font-size: 15px;
+    font-weight: 400;
+    margin: 0 auto;
+    margin-top: 30px;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    display: none;
+    /* position: absolute;
+    right: 0;
+    top: 0; */
+    z-index: 99;
+}
+
+.speed {
+    width: 88%;
+    margin: 0 auto;
+    text-align: left;
+    display: block;
+    color: #fff;
+    position: relative;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
+.pool_count4 {
+    display: none;
+}
+
+.cofi_out {
+    width: 100%;
+}
+
+.markmarket {
+    display: none;
+    padding-bottom: 50px;
+}
+
+.ETH—USDT {
+    display: flex;
+    background-color: #1B2330;
+    width: 92%;
+    margin: 0 auto;
+    border-radius: 8px;
+    height: 60px;
+    line-height: 60px;
+    margin-top: 20px;
+}
+
+.liquidity1 {
+    display: none;
+}
+
+.liquidity2 {
+    display: none;
+}
+
+.USDT-left {
+    flex: 1;
+    display: flex;
+
+}
+
+.USDT-left p {
+    width: 154px;
+    height: 23px;
+    font-size: 28px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    color: #FFFFFF;
+    margin: 0;
+    margin-left: 22px;
+}
+
+.USDT-right {
+    flex: 1;
+    line-height: 60px;
+    text-align: center;
+}
+
+.USDT-right p {
+    margin: 0;
+}
+
+.ETH—USDT p {
+    color: #FFFFFF;
+}
+
+.icon11 {
+    width: 30px;
+    position: absolute;
+    top: 15px;
+    left: 30px;
+    z-index: 1;
+}
+
+.icon12 {
+    width: 30px;
+    position: absolute;
+    left: 13px;
+    top: 15px;
+
+}
+
+.ETH-YFI {
+    height: 50%;
+    width: 92%;
+    background-color: #1B2330;
+    margin: 0 auto;
+    border-radius: 8px;
+    padding-bottom: 10px;
+    margin-top: 0px;
+    display: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.content1 {
+    display: flex;
+}
+
+.content1 p {
+    display: inline-flex;
+    align-items: center;
+}
+
+.content1-left {
+    text-align: left;
+    flex: 1;
+    color: #7D7D7D;
+    font-size: 12px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    margin-left: 22px;
+
+}
+
+.content1-right {
+    text-align: right;
+    /* flex: 1; */
+    color: #FFFFFF;
+    font-size: 14px;
+    font-family: Microsoft YaHei UI;
+    font-weight: 400;
+    margin-right: 35px;
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+}
+
+.color {
+    width: 45%;
+    height: 38px;
+    background: #E48C24;
+    border-radius: 8px;
+    font-size: 18px;
+    outline: navajowhite;
+    border: none;
+    color: #fff;
+}
+
+.ncolor {
+    font-size: 18px;
+    width: 45%;
+    height: 40px;
+    border: 1px solid #E48C24;
+    border-radius: 8px;
+    background-color: #1B2330;
+    color: #E48C24;
+}
+
+.button-group:not(first-child) {
+    /* margin-left: 30px;
+             */
+    width: 90%;
+    margin: 0 auto;
+}
+
+.mark_box {
+    display: none;
+}
+
+@media only screen and (max-width: 450px) {
+
+    .profit-content {
+        width: 100% !important;
+    }
+
+    .pool_border {
+        width: 100% !important;
+    }
+
+    .border {
+        width: 100% !important;
+    }
+
+    .img {
+        margin-left: -35px !important;
+    }
+
+    .receive {
+        /* width: 65px;
+    height: 30px !important; */
+        line-height: 30px !important;
+        font-size: 14px !important;
+        /* right: 28px; */
+        margin-top: 15px !important;
+    }
+
+    .count1 {
+        width: 100% !important;
+    }
+
+    .countMoney {
+        width: 100% !important;
+    }
+
+    .pool_tab,
+    .pool_tab2 {
+        width: 88% !important;
+    }
+
+    .count {
+        width: 88% !important;
+    }
+
+    .cqu {
+        width: 100% !important;
+    }
+
+    .center .text1 {
+        font-size: 16px;
+        margin-bottom: 0;
+    }
+
+    .center .text2 {
+        font-size: 12px;
+        margin-bottom: 5px;
+    }
+
+    .center .text3 {
+        margin-top: 10px !important;
+    }
+
+    .button-growp {
+        margin-top: 20px;
+    }
+
+    .USDT-right p span:nth-child(2) {
+        font-size: 12px !important;
+    }
+
+    .mtoken_box {
+        margin-left: 53px !important;
+    }
+
+    .USDT-right {
+        margin-left: -35px;
+    }
+
+    .ETH-YFI .mtoken_box {
+        margin-left: 60px !important;
+    }
+
+    .yw_cofi,
+    .kw_eth {
+        font-size: 22px;
+    }
+}
+
+button {
+    font-size: 16px !important;
+}
+.cqu .cofi_in{
+    pointer-events: none;
+    background: rgba(125, 125, 125, .39);
+    color: rgba(125, 125, 125, 1)
+}
