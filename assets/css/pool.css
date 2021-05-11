@@ -476,9 +476,11 @@
 
 .ycr p {
     width: auto;
-    font-size: 13px;
+    font-size: 11px;
     font-style: MicrosoftYaHei;
     display: block;
+    white-space: nowrap;
+    margin: 0;
 }
 
 /* .ycr{
@@ -497,11 +499,12 @@
 .kcr p {
 
     width: auto;
-    font-size: 13px;
+    font-size: 11px;
     font-style: MicrosoftYaHei;
     display: block;
     text-align: center;
     white-space: nowrap;
+    margin: 0;
 }
 
 /* .kcr{

@@ -1,169 +1,190 @@
-
-
-if (web3.version.network == '1') {
-    CoFiStakingRewards = '0xD16EeAfc4f614589eED0bc9294C1aE15F459831A'
-    var USDT_addr = "0xdAC17F958D2ee523a2206206994597C13D831ec7"
-    var HBTC_addr = "0x0316EB71485b0Ab14103307bf65a021042c6d380"
-
-} else if (web3.version.network == '3') {
-    USDT_addr = '0x200506568C2980B4943B5EaA8713A5740eb2c98A'
-    HBTC_addr = '0xA674f71ce49CE7F298aea2F23D918d114965eb40'
-    CoFiStakingRewards = '0xDe80d5423569Ea4104d127e14E3fC1BE0486531d'
-    CoFiXVaultForCNode = '0x1a31b517ABF0D2F4f11A797d7b8622859429AA25'
-    CoFiXNode = '0x1467459E5BC77C5D350D6c31bA69351Df1e1E3A2'
-} else {
-    USDT_addr = '0x200506568C2980B4943B5EaA8713A5740eb2c98A'
-    HBTC_addr = '0xA674f71ce49CE7F298aea2F23D918d114965eb40'
-    CoFiStakingRewards = '0xC8b29e0b4F5e9A55a0130934A690655BefbA34B4'
-}// 检查web3是否已经注入到(Mist/MetaMask)
-// 现在你可以启动你的应用并自由访问 Web3.js:
-// startApp()
-window.addEventListener('load', function () {
-    console.log('web3')
-    if (typeof web3 !== 'undefined') {
-        web3 = new Web3(web3.currentProvider);
+ethereum.request({ method: 'eth_chainId' }).then(res => {
+    networkId = res
+    if (networkId == '0x1') {
+        CoFiStakingRewards = '0x0061c52768378b84306b2665f098c3e0b2C03308'
+        CoFiXVaultForCNode = '0x7eDa8251aC08E7898E986DbeC4Ba97B421d545DD'
+        CoFiXNode = '0x558201DC4741efc11031Cdc3BC1bC728C23bF512'
+    } else if (networkId == '0x3') {
+        CoFiStakingRewards = '0xDe80d5423569Ea4104d127e14E3fC1BE0486531d'
+        CoFiXVaultForCNode = '0x1a31b517ABF0D2F4f11A797d7b8622859429AA25'
+        CoFiXNode = '0x1467459E5BC77C5D350D6c31bA69351Df1e1E3A2'
     } else {
-        console.log('web3', 3)
-        switch (web3.version.network) {
-            case '1': {
-                const node = getNode();
-                console.log('Used node: ' + node);
-                web3 = new Web3(new Web3.providers.HttpProvider(node));
-                break;
-            }
-            case '3': {
-                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
-                break;
-            }
-            default: {
-                const node = getNode();
-                console.log('Used node: ' + node);
-                web3 = new Web3(new Web3.providers.HttpProvider(node));
-                break;
-            }
-        }
+        CoFiStakingRewards = '0x0061c52768378b84306b2665f098c3e0b2C03308'
+        CoFiXVaultForCNode = '0x7eDa8251aC08E7898E986DbeC4Ba97B421d545DD'
+        CoFiXNode = '0x558201DC4741efc11031Cdc3BC1bC728C23bF512'
 
     }
-    console.log('web32', web3)
-    $('.push').click(function () {
-        if (window.ethereum) {
-            // 请求用户授权
-            $(this).children('.loading').show()
-            $('.contact').css('pointer-events', 'none')
-            window.ethereum.enable().then(function (res) {
-                console.log(res)
-                setInterval(function () {
-                    if (ethereum.selectedAddress !== "") {
-                        location.reload()
+
+    let currentAccount = null;
+    ethereum
+        .request({ method: 'eth_accounts' })
+        .then(handleAccountsChanged)
+        .catch((err) => {
+            // Some unexpected error.
+            // For backwards compatibility reasons, if no accounts are available,
+            // eth_accounts will return an empty array.
+            console.error(err);
+        });
+
+    // Note that this event is emitted on page load.
+    // If the array of accounts is non-empty, you're already
+    // connected.
+    ethereum.on('accountsChanged', handleAccountsChanged);
+
+    // For now, 'eth_accounts' will continue to always return an array
+    function handleAccountsChanged (accounts) {
+        if (accounts.length === 0) {
+            // MetaMask is locked or the user has not connected any accounts
+            console.log('Please connect to MetaMask.');
+        } else if (accounts[0] !== currentAccount) {
+            currentAccount = accounts[0];
+            console.log(currentAccount)
+            $('.wallet_addr').text(hidden_address(accounts[0]))
+            if (accounts.length == 0) {
+                $('.push').css('display', 'block')
+                $('.sq_usdt').css('display', 'none')
+                $('.rg_max').hide()
+                $('.rg_usdt').css('display', 'none')
+            } else {
+                $('.push').hide()
+                $('.cqu').css('display', 'flex')
+                $('.receive').css('display', 'block')
+            }
+            var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
+            stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
+                // console.log(result)
+                var pool_addr = result
+                var myContract = new web3.eth.Contract(ERC20Abi, CoFiXNode);
+                myContract.methods.allowance(accounts[0], pool_addr).call().then(function (result) {
+                    var sqnum_usdt = web3.utils.toWei(result, 'wei');
+                    console.log(sqnum_usdt)
+                    if (sqnum_usdt > 0) {
+
+                        $('.inCofi_sq').hide()
+                        $('.cofi_in').css({
+                            'width': '100%',
+                            'pointer-events': 'auto',
+                            'background': 'rgba(228, 140, 36, 1)',
+                            'color': 'rgba(255, 255, 255, 1)'
+                        })
+                    } else {
+                        $('.inCofi_sq').show()
+                        $('.cofi_in').css({
+                            'width': '45%',
+                            'pointer-events': 'none',
+                            'background': 'rgba(125, 125, 125, .39)',
+                            'color': 'rgba(125, 125, 125, 1)'
+                        })
                     }
-                }, 1500)
-            }).catch(function (reason) {
-                // Handle error. Likely the user rejected the login:
-                $('.push').children('.loading').hide()
-                $('.contact').css('pointer-events', 'auto')
-
+                })
             })
-        }
-    })
 
-    // connect wallet
-    ethereum.on('accountsChanged', function (accounts) {
-        console.log(accounts[0])
-        location.reload()
-    })
-    web3.eth.getAccounts((error, accounts) => {
-        $('.wallet_addr').text(hidden_address(accounts[0]))
-        if (accounts.length == 0) {
-            $('.push').css('display', 'block')
-            $('.sq_usdt').css('display', 'none')
-            $('.rg_max').hide()
-            $('.rg_usdt').css('display', 'none')
-        } else {
-            $('.push').hide()
-            $('.cqu').css('display', 'flex')
-            $('.receive').css('display', 'block')
+            var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
+            stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
+                // console.log(result)
+                var pool_addr = result
+                console.log(pool_addr)
+                var earned = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
+                earned.methods.earned(accounts[0]).call().then(function (result) {
+                    console.log(result)
+                    var earned = web3.utils.fromWei(result, 'ether')
+                    if (earned * 1 < 0.00000001) {
+                        earned = 0
+                    }
+                    console.log(earned)
+                    $('.yw_cofi').text(cutZero(formatDecimal((earned), 8).slice(0, 14)))
+                    // console.log("已挖出cofi", earned)
+                })
+                var rewardRate = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
+                rewardRate.methods.rewardRate().call().then(function (result) {
+                    var rewardRate = result / 1e18
+                    // console.log(rewardRate)
+                    $('.wk_speed').text(cutZero(formatDecimal((rewardRate * 6171.4), 8).slice(0, 14)))
+                    // console.log("挖矿速度", rewardRate)
+                })
+                var deposited = new web3.eth.Contract(ERC20Abi, pool_addr);
+                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
+                    console.log(result)
+                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
+                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
+                    if (result * 1 < 0.00000001) {
+                        result = 0
+                    }
+                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
+                    $('.yc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
+                    console.log("已存入份额", result)
+                })
+                var deposited = new web3.eth.Contract(ERC20Abi, CoFiXNode);
+                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
+                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
+                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
+                    console.log(result)
+                    if (result * 1 < 0.00000001) {
+                        result = 0
+                    }
+                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
+                    $('.kc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
+                    console.log("可存入份额", result)
+                })
+            })
+            setInterval(function () {
+                transaction()
+            }, 15000)
         }
-        var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
-        stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
-            // console.log(result)
-            var pool_addr = result
-            var myContract = new web3.eth.Contract(ERC20Abi, CoFiXNode);
-            myContract.methods.allowance(accounts[0], pool_addr).call().then(function (result) {
-                var sqnum_usdt = web3.utils.toWei(result, 'wei');
-                console.log(sqnum_usdt)
-                if (sqnum_usdt > 0) {
+    }
+    function transaction () {
 
-                    $('.inCofi_sq').hide()
-                    $('.cofi_in').css({
-                        'width': '100%',
-                        'pointer-events': 'auto',
-                        'background': 'rgba(228, 140, 36, 1)',
-                        'color': 'rgba(255, 255, 255, 1)'
-                    })
-                } else {
-                    $('.inCofi_sq').show()
-                    $('.cofi_in').css({
-                        'width': '45%',
-                        'pointer-events': 'none',
-                        'background': 'rgba(125, 125, 125, .39)',
-                        'color': 'rgba(125, 125, 125, 1)'
-                    })
-                }
+        web3.eth.getAccounts((error, accounts) => {
+            $('.wallet_addr').text(hidden_address(accounts[0]))
+            var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
+            stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
+                // console.log(result)
+                var pool_addr = result
+                console.log(pool_addr)
+                var earned = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
+                earned.methods.earned(accounts[0]).call().then(function (result) {
+                    var earned = web3.utils.fromWei(result, 'ether')
+                    if (earned * 1 < 0.00000001) {
+                        earned = 0
+                    }
+                    $('.yw_cofi').text(cutZero(formatDecimal(earned, 8).slice(0, 14)))
+                    // console.log("已挖出cofi", earned)
+                })
+                var rewardRate = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
+                rewardRate.methods.rewardRate().call().then(function (result) {
+                    var rewardRate = result / 1e18
+                    // console.log(rewardRate)
+                    $('.wk_speed').text(cutZero(formatDecimal((rewardRate * 6171.4), 8).slice(0, 14)))
+                    // console.log("挖矿速度", rewardRate)
+                })
+                var deposited = new web3.eth.Contract(ERC20Abi, pool_addr);
+                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
+                    console.log(result)
+                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
+                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
+                    if (result * 1 < 0.00000001) {
+                        result = 0
+                    }
+                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
+                    $('.yc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
+                    console.log("已存入份额", result)
+                })
+                var deposited = new web3.eth.Contract(ERC20Abi, CoFiXNode);
+                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
+                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
+                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
+                    console.log(result)
+                    if (result * 1 < 0.00000001) {
+                        result = 0
+                    }
+                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
+                    $('.kc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
+                    console.log("可存入份额", result)
+                })
             })
         })
 
-        var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
-        stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
-            // console.log(result)
-            var pool_addr = result
-            console.log(pool_addr)
-            var earned = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
-            earned.methods.earned(accounts[0]).call().then(function (result) {
-                console.log(result)
-                var earned = web3.utils.fromWei(result, 'ether')
-                if (earned * 1 < 0.00000001) {
-                    earned = 0
-                }
-                console.log(earned)
-                $('.yw_cofi').text(cutZero(formatDecimal((earned), 8).slice(0, 14)))
-                // console.log("已挖出cofi", earned)
-            })
-            var rewardRate = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
-            rewardRate.methods.rewardRate().call().then(function (result) {
-                var rewardRate = result / 1e18
-                // console.log(rewardRate)
-                $('.wk_speed').text(cutZero(formatDecimal((rewardRate * 6171.4), 8).slice(0, 14)))
-                // console.log("挖矿速度", rewardRate)
-            })
-            var deposited = new web3.eth.Contract(ERC20Abi, pool_addr);
-            deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
-                console.log(result)
-                // var deposited = web3.utils.fromWei(result, 'ether') * 1
-                // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
-                if (result * 1 < 0.00000001) {
-                    result = 0
-                }
-                // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
-                $('.yc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
-                console.log("已存入份额", result)
-            })
-            var deposited = new web3.eth.Contract(ERC20Abi, CoFiXNode);
-            deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
-                // var deposited = web3.utils.fromWei(result, 'ether') * 1
-                // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
-                console.log(result)
-                if (result * 1 < 0.00000001) {
-                    result = 0
-                }
-                // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
-                $('.kc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
-                console.log("可存入份额", result)
-            })
-        })
-        setInterval(function () {
-            transaction()
-        }, 15000)
-    })
+    }
     $('.inCofi_sq').click(function () {
         web3.eth.getAccounts((error, accounts) => {
             web3.eth.defaultAccount = accounts[0];
@@ -363,56 +384,80 @@ window.addEventListener('load', function () {
         $('.cofi_yebz').hide()
 
     })
-    function transaction () {
-        web3.eth.getAccounts((error, accounts) => {
-            $('.wallet_addr').text(hidden_address(accounts[0]))
-            var stakingPoolForPairContract = new web3.eth.Contract(CoFiXVaultForCNodeAbi, CoFiXVaultForCNode);
-            stakingPoolForPairContract.methods.cnodePool().call().then(function (result) {
-                // console.log(result)
-                var pool_addr = result
-                console.log(pool_addr)
-                var earned = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
-                earned.methods.earned(accounts[0]).call().then(function (result) {
-                    var earned = web3.utils.fromWei(result, 'ether')
-                    if (earned * 1 < 0.00000001) {
-                        earned = 0
-                    }
-                    $('.yw_cofi').text(cutZero(formatDecimal(earned, 8).slice(0, 14)))
-                    // console.log("已挖出cofi", earned)
-                })
-                var rewardRate = new web3.eth.Contract(CoFiStakingRewardsAbi, pool_addr);
-                rewardRate.methods.rewardRate().call().then(function (result) {
-                    var rewardRate = result / 1e18
-                    // console.log(rewardRate)
-                    $('.wk_speed').text(cutZero(formatDecimal((rewardRate * 6171.4), 8).slice(0, 14)))
-                    // console.log("挖矿速度", rewardRate)
-                })
-                var deposited = new web3.eth.Contract(ERC20Abi, pool_addr);
-                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
-                    console.log(result)
-                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
-                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
-                    if (result * 1 < 0.00000001) {
-                        result = 0
-                    }
-                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
-                    $('.yc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
-                    console.log("已存入份额", result)
-                })
-                var deposited = new web3.eth.Contract(ERC20Abi, CoFiXNode);
-                deposited.methods.balanceOf(accounts[0]).call().then(function (result) {
-                    // var deposited = web3.utils.fromWei(result, 'ether') * 1
-                    // $('.yc_fe').text(cutZMath.absero((deposited*1-0.000000005).toFixed(8).slice(0,14)))
-                    console.log(result)
-                    if (result * 1 < 0.00000001) {
-                        result = 0
-                    }
-                    // $('.sh_fe').text(cutZero(formatDecimal(deposited, 8).slice(0, 14)))
-                    $('.kc_fe1').text(cutZero(formatDecimal(result, 8).slice(0, 14)))
-                    console.log("可存入份额", result)
-                })
-            })
-        })
+
+})
+
+ethereum.on('chainChanged', handleChainChanged);
+
+function handleChainChanged (_chainId) {
+    // We recommend reloading the page, unless you must do otherwise
+    window.location.reload();
+}
+// 检查web3是否已经注入到(Mist/MetaMask)
+// 现在你可以启动你的应用并自由访问 Web3.js:
+// startApp()
+console.log(1)
+window.addEventListener('load', function () {
+    if (typeof web3 !== 'undefined') {
+        web3 = new Web3(web3.currentProvider);
+    } else {
+        console.log('web3', 3)
+        switch (web3.version.network) {
+            case '1': {
+                const node = getNode();
+                console.log('Used node: ' + node);
+                web3 = new Web3(new Web3.providers.HttpProvider(node));
+                break;
+            }
+            case '3': {
+                web3 = new Web3(new Web3.providers.HttpProvider("http://localhost:7545"));
+                break;
+            }
+            default: {
+                const node = getNode();
+                console.log('Used node: ' + node);
+                web3 = new Web3(new Web3.providers.HttpProvider(node));
+                break;
+            }
+        }
+
     }
+    // console.log('web3')
+    // if (typeof web3 !== 'undefined') {
+    //     const oldProvider = web3.currentProvider; // keep a reference to metamask provider
+
+    //     myWeb3 = new Web3(oldProvider);  // now you can use myWeb3 instead of web3
+    // } else {
+    //     console.log('web3', 3)
+
+    // console.log('web32', web3)
+    $('.push').click(function () {
+        if (window.ethereum) {
+            // 请求用户授权
+            $(this).children('.loading').show()
+            $('.contact').css('pointer-events', 'none')
+            window.ethereum.enable().then(function (res) {
+                console.log(res)
+                setInterval(function () {
+                    if (ethereum.selectedAddress !== "") {
+                        location.reload()
+                    }
+                }, 1500)
+            }).catch(function (reason) {
+                // Handle error. Likely the user rejected the login:
+                $('.push').children('.loading').hide()
+                $('.contact').css('pointer-events', 'auto')
+
+            })
+        }
+    })
+
+    // connect wallet
+    ethereum.on('accountsChanged', function (accounts) {
+        console.log(accounts[0])
+        location.reload()
+    })
+
+
 })
 
